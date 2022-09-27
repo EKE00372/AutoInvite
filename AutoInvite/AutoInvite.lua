@@ -31,11 +31,11 @@ hooksecurefunc("ChatFrame_OnHyperlinkShow", function(frame, link, _, button)
 			local gameAccountInfo = accountInfo.gameAccountInfo
 			local gameID = gameAccountInfo.gameAccountID
 			
-			if gameID and CanCooperateWithGameAccount(accountInfo) then
+			if gameID then
 				if IsAltKeyDown() then
 					BNInviteFriend(gameID)
 					hide = true
-				elseif IsControlKeyDown() then
+				elseif IsControlKeyDown() and CanCooperateWithGameAccount(accountInfo) then
 					local charName = gameAccountInfo.characterName
 					local realmName = gameAccountInfo.realmName
 					
@@ -87,9 +87,9 @@ local WhisperInvite = CreateFrame("Frame", UIParent)
 						if gameID then
 							local charName = gameAccountInfo.characterName
 							local realmName = gameAccountInfo.realmName
-							if CanCooperateWithGameAccount(accountInfo) then
+							--if CanCooperateWithGameAccount(accountInfo) then
 								BNInviteFriend(gameID)
-							end
+							--end
 						end
 					end
 				else
